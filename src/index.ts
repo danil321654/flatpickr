@@ -2936,9 +2936,9 @@ function _flatpickr(
   config?: Options
 ): Instance | Instance[] {
   // static list
-  const nodes = Array.prototype.slice
-    .call(nodeList)
-    .filter((x) => x instanceof HTMLElement) as HTMLElement[];
+  var nodes = Array.from(nodeList || []).filter(function (x): x is HTMLElement {
+    return x instanceof HTMLElement;
+  })
 
   const instances: Instance[] = [];
   for (let i = 0; i < nodes.length; i++) {
